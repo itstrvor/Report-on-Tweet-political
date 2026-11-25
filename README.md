@@ -1,41 +1,24 @@
-Project Presentation Report
-1. Project Title
-Sentiment Analysis of Kenyan Political Discussions: A Machine Learning Approach
+Project Report
+This report explains what this project is about, what we did, and what we learned in simple, everyday language.
 
-2. Executive Summary
-Objective:
-Analyze public sentiment regarding political figures (Uhuru Kenyatta & William Ruto) in Kenya using Twitter data.
-Methodology:
-Collected and cleaned over 11,000 tweets, annotated a representative sample of 1,000 tweets using VADER, and compared Multinomial Naive Bayes against Logistic Regression using a TF-IDF vectorization pipeline.
-Key Finding:
-Logistic Regression outperformed Multinomial Naive Bayes, achieving a higher accuracy of 58.50% and a more balanced classification performance across all sentiment classes.
-4. Data & Preprocessing Pipeline
-Initial Dataset: 11,723 raw records.
-Cleaned Dataset: 11,569 high-quality tweets.
-Preprocessing Steps:
-Removed missing tweet texts and duplicated records.
-Lowercased all text to achieve standard casing.
-Stripped non-informative elements (URLs, @mentions, and numeric characters).
-Cleaned special punctuation/emojis while preserving essential spaces.
-Removed empty records resulting from the cleaning process.
-5. Modeling & Strategy
-Sampling: Stratified 80/20 split on 1,000 VADER-annotated samples (800 Train / 200 Test) to ensure class distribution consistency.
-Features: TF-IDF (Term Frequency-Inverse Document Frequency) word vectorizer pipeline.
-Models Tested:
-Multinomial Naive Bayes (Generative model base)
-Logistic Regression (Discriminative linear model)
-6. Comparative Evaluation Results
-Evaluation Metric	Naive Bayes	Logistic Regression (Winner)
-Accuracy	54.50%	58.50%
-Weighted Precision	61.90%	58.44%
-Weighted Recall	54.50%	58.50%
-Weighted F1-score	52.27%	57.79%
-Critical Takeaways from Confusion Matrices:
-Naive Bayes struggled significantly with the negative class (only predicting 25% recall), showing a high bias toward predicting "positive" labelings.
-Logistic Regression demonstrated a much more stable and balanced performance, maintaining a balanced distribution of correct predictions across positive, negative, and neutral classes.
-7. Challenges & Ethical Considerations
-Language & Cultural Nuances: Political discourse in Kenya heavily utilizes Swahili, Sheng, and local sarcasms which English-trained lexicon-lexicons (like VADER) may mislabel during auto-annotation.
-Platform Representation Bias: Twitter users represent a specific demographic subsection of Kenya and may not reflect the political opinions of the wider, offline Kenyan public.
-8. Future Directions
-Fine-Tuning Semantic Context: Replace VADER with native multilingual models (such as AfroXML-RoBERTa or Swahili-BERT) to capture Kenyan linguistic contexts.
-Hyperparameter Optimization: Conduct grid searches to optimize tokenization parameters and regularizations in Logistic Regression.
+The Goal
+People talk a lot about politics on social media (like Twitter). We wanted to see if a computer could read tweets about Kenyan politicians (like Uhuru Kenyatta and William Ruto) and automatically tell if the person writing the tweet was feeling Happy (Positive), Angry/Upset (Negative), or just Stating Facts (Neutral).
+
+What Did We Do? (Step-by-Step)
+Collected the Tweets: We started with a big pile of over 11,000 tweets.
+Cleaned Up the Text: Just like washing vegetables before cooking, we cleaned the tweets by removing messy things that don't help us find feelings. We removed web links (URLs), tags (like @username), numbers, and punctuation.
+Labeled the Feelings: We took 1,000 tweets and used an automated tool called VADER to tag each tweet as either Positive, Neutral, or Negative.
+Taught the Computers: We split these 1,000 tweets. We showed 800 of them to two different computer programs (our models) so they could learn which words are usually positive (like "good", "love") and which are negative (like "corrupt", "failed").
+Tested the Models: We gave the remaining 200 tweets to our models to see if they could guess the correct feelings without looking at the answers.
+The Final Results:
+We tested two computer models:
+
+Model 1: Naive Bayes (The "Optimistic" Model)
+Grade: 54.5% score on the test.
+What it did: It was too optimistic. It kept guessing that angry/negative tweets were actually positive because it struggled to understand negative tones.
+Model 2: Logistic Regression (The "Balanced" Winner) 
+Grade: 58.5% score on the test.
+What it did: This model did a much better job. It was more balanced and was able to spot angry, neutral, and happy tweets much more evenly.
+Important Things to Keep in Mind (Limitations)
+Language Barriers: People in Kenya often speak Swahili or Sheng (slang), or use sarcasm. Because our computer tools are mostly trained on plain English, they sometimes missed the real meaning of these tweets.
+Not the Whole Country: Twitter users are usually younger or live in cities, so these results don't represent what every person in Kenya thinks.
